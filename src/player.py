@@ -1,4 +1,5 @@
 import pygame
+WIDTH, HEIGHT = 800, 600
 
 class Player:
     def __init__(self, x, y):
@@ -6,8 +7,11 @@ class Player:
         self.image.fill((0,0,255))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.speed = 2
-    
+        self.speed = 1
+
+        self.camera_x = self.rect.centerx - WIDTH // 2
+        self.camera_y = self.rect.centery - HEIGHT // 2
+
     #move o jogador
     def move(self):
         keys = pygame.key.get_pressed()
@@ -22,6 +26,8 @@ class Player:
     
     def update(self):
         self.move()
+        self.camera_x = self.rect.centerx - WIDTH // 2
+        self.camera_y = self.rect.centery - HEIGHT // 2
 
     def draw(self, surface):
-        surface.blit(self.image, self.rect)
+        surface.blit(self.image, (self.rect.x-self.camera_x, self.rect.y - self.camera_y))

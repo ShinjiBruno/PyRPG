@@ -2,9 +2,11 @@ import pygame
 import sys
 from player import Player #".'nome_arquivo'" significa importar do mesmo diretório 
 
+WIDTH, HEIGHT = 800, 600
+
 class Game:
     def __init__(self):
-        self.screen = pygame.display.set_mode((800, 600))
+        self.screen = pygame.display.set_mode(( WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
         self.player = Player(50, 200)
         self.running=True
@@ -27,7 +29,6 @@ class Game:
     def draw(self):
         self.screen.fill((0,0,0))
         self.player.draw(self.screen)
-
         pygame.display.flip()
 
     def quit(self):
